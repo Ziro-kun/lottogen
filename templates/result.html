@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또 결과</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>🎯 로또 번호 결과 (총 {{ game_count }}게임)</h1>
+
+    {% for group in grouped_games %}
+        <h3>세트 {{ loop.index }}</h3>
+        <ul>
+            {% for game in group %}
+                <li>{{ loop.index }}게임 : {{ game }}</li>
+            {% endfor %}
+        </ul>
+        <hr>
+    {% endfor %}
+
+    <a href="/">다시 뽑기</a>
+</body>
+</html>
