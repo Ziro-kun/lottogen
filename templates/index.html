@@ -8,15 +8,17 @@
 </head>
 
 <body>
-    <h1>🎲 로또 번호 생성기</h1>
+    <main class="container">
+        <h1>🎲 로또 번호 생성기</h1>
 
-    <form action="/result" method="post">
-        <label>
-            몇 게임을 구매하시나요?
-            <input type="number" name="game_count" min="1" max="20" required>
-        </label>
-        <br><br>
-        <button type="submit">번호 생성하기</button>
-    </form>
+        <form class="lotto-form" action="/result" method="post">
+            <label for="game_count">
+                몇 게임을 구매하시나요?
+                <input type="number" id="game_count" name="game_count" min="1" max="100" value="5" required>
+                <span class="hint">1~100 게임</span>
+            </label>
+            <button type="submit">번호 생성하기</button>
+        </form>
+    </main>
 </body>
 </html>

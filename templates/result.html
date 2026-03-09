@@ -7,18 +7,29 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>🎯 로또 번호 결과 (총 {{ game_count }}게임)</h1>
+    <main class="container">
+        <h1>🎯 로또 번호 결과 (총 {{ game_count }}게임)</h1>
 
-    {% for group in grouped_games %}
-        <h3>세트 {{ loop.index }}</h3>
-        <ul>
+        {% set ns = namespace(game_num=0) %}
+        {% for group in grouped_games %}
+        <section class="result-set">
+            <h3>세트 {{ loop.index }}</h3>
             {% for game in group %}
-                <li>{{ loop.index }}게임 : {{ game }}</li>
+            {% set ns.game_num = ns.game_num + 1 %}
+            <div class="game-card">
+                <div class="game-label">{{ ns.game_num }}게임</div>
+                <div class="balls">
+                    {% for num in game %}
+                    {% set range_idx = 5 if num >= 40 else ((num - 1) // 10) + 1 %}
+                    <span class="ball ball--{{ range_idx }}">{{ num }}</span>
+                    {% endfor %}
+                </div>
+            </div>
             {% endfor %}
-        </ul>
-        <hr>
-    {% endfor %}
+        </section>
+        {% endfor %}
 
-    <a href="/">다시 뽑기</a>
+        <a class="btn-back" href="/">다시 뽑기</a>
+    </main>
 </body>
 </html>
